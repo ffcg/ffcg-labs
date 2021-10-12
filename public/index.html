@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+  <body>
+    <script>
+      const smhiTempInArvidsjaurURL =
+        "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/159880/period/latest-day/data.json";
+
+      function insertResult(tempArray) {
+        const resultNode = document.body.querySelector(".result");
+        let result = document.createElement("div");
+        result.className = "result";
+        let list = document.createElement("ul");
+        result.appendChild(list);
+        tempArray.forEach((temp) => {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `${temp}`;
+          list.appendChild(listItem);
+        });
+        resultNode.replaceWith(result);
+      }
+
+      async function getData() {
+        const currentTemp = await fetch(smhiTempInArvidsjaurURL)
+          .then((response) => response.json())
+          .then((data) => data.value.map((v) => v.value));
+        insertResult(currentTemp);
+      }
+    </script>
+    <h1>Serverless</h1>
+    <button type="button" onclick="getData()">Fetch</button>
+    <div class="result">Result...</div>
+  </body>
+</html>

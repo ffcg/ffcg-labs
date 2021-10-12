@@ -3,5 +3,11 @@ module "http_function" {
   project              = var.project
   function_name        = "hello-world"
   function_entry_point = "helloWorld"
-  function_source_path = "./src"
+  source_path = "./src"
+}
+
+module "static_site" {
+  source      = "./modules/static_site"
+  project     = var.project
+  source_path = "./public"
 }

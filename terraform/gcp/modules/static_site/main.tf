@@ -1,0 +1,39 @@
+locals {
+	root_dir = "${path.root}/../../${var.source_path}"
+  services = [
+    "cloudfunctions.googleapis.com",
+    "cloudbuild.googleapis.com"
+  ]
+}
+
+resource "google_storage_bucket_object" "static_site" {
+  for_each = fileset(local.root_dir, "**")
+  name     = each.key
+  source   = "${local.root_dir}/${each.key}"
+  bucket   = google_storage_bucket.static_site.name
+}
+
+resource "google_storage_bucket" "static_site" {
+  name          = "${var.project}-static-site"
+  location      = "EU"
+  force_destroy = true
+
+  uniform_bucket_level_access = true
+
+  website {
+    main_page_suffix = "index.html"
+    not_found_page   = "404.html"
+  }
+  cors {
+    #origin          = ["http://image-store.com"]
+    method          = ["GET"]
+    response_header = ["*"]
+    max_age_seconds = 3600
+  }
+}
+
+resource "google_storage_bucket_iam_member" "member" {
+  bucket = google_storage_bucket.static_site.name
+  role = "roles/storage.objectViewer"
+  member = "allUsers"
+}

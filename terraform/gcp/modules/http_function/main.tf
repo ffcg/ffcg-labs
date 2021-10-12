@@ -1,6 +1,6 @@
 locals {
   timestamp = formatdate("YYMMDDhhmmss", timestamp())
-	root_dir = abspath("../../${var.function_source_path}")
+	root_dir = abspath("../../${var.source_path}")
   services = [
     "cloudfunctions.googleapis.com",
     "cloudbuild.googleapis.com"
@@ -21,13 +21,12 @@ resource "google_storage_bucket" "bucket" {
 
 # Add source code zip to bucket
 resource "google_storage_bucket_object" "zip" {
-  # Append file MD5 to force bucket to be recreated
   name   = "source.zip#${data.archive_file.source.output_md5}"
   bucket = google_storage_bucket.bucket.name
   source = data.archive_file.source.output_path
 }
 
-# Enable Cloud Build API
+# Enable APIs
 resource "google_project_service" "default" {
   project  = var.project
   for_each = toset(local.services)

@@ -1,5 +1,4 @@
 locals {
-  timestamp = formatdate("YYMMDDhhmmss", timestamp())
 	root_dir = abspath("../../${var.source_path}")
   services = [
     "cloudfunctions.googleapis.com",
@@ -11,7 +10,14 @@ locals {
 data "archive_file" "source" {
   type        = "zip"
   source_dir  = local.root_dir
-  output_path = "/tmp/function-${local.timestamp}.zip"
+  output_path = "/tmp/source.zip"
+}
+
+# Only compress if sha changes
+resource "null_resource" "source" {
+  triggers = {
+    src_hash = "${data.archive_file.source.output_sha}"
+  }
 }
 
 # Create bucket that will host the source code
@@ -21,7 +27,8 @@ resource "google_storage_bucket" "bucket" {
 
 # Add source code zip to bucket
 resource "google_storage_bucket_object" "zip" {
-  name   = "source.zip#${data.archive_file.source.output_md5}"
+
+  name   = "${data.archive_file.source.output_sha}-source.zip"
   bucket = google_storage_bucket.bucket.name
   source = data.archive_file.source.output_path
 }

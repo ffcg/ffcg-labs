@@ -2,15 +2,17 @@
 ## Backend or FaaS Development with Azure Durable Functions .NET 
 
 #### Lab Description
-Azure Durable Functions with Integration to Azure Storage, Azure Service Bus, Twilio API, SendGrid API, etc.
+This is a laboration for Serverless in Azure. 
+A hands-on lab for [Azure Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview?tabs=csharp) with integrations to Azure BLOB Storage, Azure Service Bus, Twilio API, SendGrid API, etc.
 
 #### PREREQUISITES AND LAB ENVIRONMENT SETUP 
 
-* Basics Concepts of Serverless Serverless Computing 
-* Basics of using Microsoft Azure 
-* Microsoft Azure Account - Private or Organization Account 
-* Visual Studio or VS Code
-* Programming Language C# .NET 
+* Basics xoncepts of Serverless Serverless Computing (If you are a student of Forefront's Serverless course, great!)
+* Basics ceoncepts  using Microsoft Azure 
+* Microsoft Azure account - Private or Organization Forefront acount 
+* Latest Version Visual Studio or VS Code
+* Azure Storage Explorer 
+* Programming Language C# .NET (You can code in other supported languages as well - see supported languages)
 * Install [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Cwindows%2Ccsharp%2Cportal%2Cbash%2Ckeda)
 * 
 

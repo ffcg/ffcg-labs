@@ -10,9 +10,9 @@ Access to **google cloud shell** or **azure cloud shell**, or a workstation with
 
 ## Directory structure of this repo
 
-* `public` - any static files to host, independent of infrastructure
-* `src` - source code for both azure and gcp backends and any frontend
-* `terraform` - scripts to generate infrastructure resources and deployment for both Azure and GCP.
+* [`public/`](./public)  - any static files to host, independent of infrastructure
+* [`src/`](./src)  - source code for both azure and gcp backends and any frontend
+* [`terraform/`](./terraform)  - scripts to generate infrastructure resources and deployment for both Azure and GCP.
 
 ## Instructions
 

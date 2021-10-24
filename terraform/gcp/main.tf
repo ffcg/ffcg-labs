@@ -38,7 +38,8 @@ resource "google_storage_notification" "upload_bucket_upload_notification" {
 
 // create the upload bucket
 resource "google_storage_bucket" "upload_bucket" {
-  name = "${var.prefix}-${var.project}-upload-bucket"
+  project       = var.project
+  name          = "${var.prefix}-${var.project}-upload-bucket"
   location      = "EU"
   force_destroy = true
 
@@ -47,5 +48,7 @@ resource "google_storage_bucket" "upload_bucket" {
 
 // create the upload topic
 resource "google_pubsub_topic" "file_upload" {
-  name = "${var.prefix}-file-upload"
+  project = var.project
+  name    = "${var.prefix}-file-upload"
 }
+

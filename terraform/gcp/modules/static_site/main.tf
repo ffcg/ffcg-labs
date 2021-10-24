@@ -1,5 +1,5 @@
 locals {
-	root_dir = "${path.root}/../../${var.source_path}"
+	root_dir = "../${var.source_path}"
   services = [
     "cloudfunctions.googleapis.com",
     "cloudbuild.googleapis.com"

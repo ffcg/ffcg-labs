@@ -34,6 +34,9 @@ resource "google_storage_notification" "upload_bucket_upload_notification" {
   topic          = google_pubsub_topic.file_upload.id
   event_types    = ["OBJECT_FINALIZE"]
   depends_on = [google_pubsub_topic_iam_binding.gcs_service_agent_pubsub_publisher]
+  custom_attributes = {
+    prefix = var.prefix
+  }
 }
 
 // create the upload bucket
@@ -52,3 +55,8 @@ resource "google_pubsub_topic" "file_upload" {
   name    = "${var.prefix}-file-upload"
 }
 
+resource "google_app_engine_application" "app" {
+  project     = var.project
+  location_id = "europe-west"
+  database_type = "CLOUD_DATASTORE_COMPATIBILITY"
+}

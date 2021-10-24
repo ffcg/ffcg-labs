@@ -25,7 +25,7 @@ resource "google_storage_bucket" "static_site" {
     not_found_page   = "404.html"
   }
   cors {
-    #origin          = ["http://image-store.com"]
+    origin          = ["*"]
     method          = ["GET"]
     response_header = ["*"]
     max_age_seconds = 3600

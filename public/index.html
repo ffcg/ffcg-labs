@@ -8,8 +8,8 @@
   </head>
   <body>
     <script>
-      const smhiTempInArvidsjaurURL =
-        "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/159880/period/latest-day/data.json";
+      const apiUrl =
+        "https://europe-west1-serverless-labs-328806.cloudfunctions.net/ja-hello-world";
 
       function insertResult(tempArray) {
         const resultNode = document.body.querySelector(".result");
@@ -26,9 +26,9 @@
       }
 
       async function getData() {
-        const currentTemp = await fetch(smhiTempInArvidsjaurURL)
+        const currentTemp = await fetch(apiUrl)
           .then((response) => response.json())
-          .then((data) => data.value.map((v) => v.value));
+          .then((data) => data.map((v) => v.image.name));
         insertResult(currentTemp);
       }
     </script>

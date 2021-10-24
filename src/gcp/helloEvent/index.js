@@ -34,7 +34,7 @@ exports.helloEvent = async pubsubMessage => {
   };
 
   // Saves the entity
-  await datastore.save(image);
+  await datastore.upsert(image);
   console.log(`Saving ${JSON.stringify(image)}`);
 }
 // [END functions_pubsub_subscribe]

@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "static_site" {
 }
 
 resource "azurerm_storage_account" "static_site" {
-  name                     = "${var.prefix}serverlesslab"
+  name                     = var.name
   resource_group_name      = azurerm_resource_group.static_site.name
   location                 = azurerm_resource_group.static_site.location
   account_tier             = "Standard"

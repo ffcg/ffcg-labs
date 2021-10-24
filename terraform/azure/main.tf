@@ -1,6 +1,6 @@
 module "static_site" {
   source      = "./modules/static_site"
   project     = var.project
-  prefix      = var.initials
+  name        = "${var.prefix}serverlesslab"
   source_path = "../../public"
 }

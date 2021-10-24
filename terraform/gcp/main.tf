@@ -1,5 +1,6 @@
 // publishes ./public to a publicly accessible bucket
 module "static_site" {
+  name        = "${var.prefix}-${var.project}-static-site"
   source      = "./modules/static_site"
   project     = var.project
   source_path = "../public"
@@ -9,7 +10,7 @@ module "static_site" {
 module "http_function" {
   source               = "./modules/http_function"
   project              = var.project
-  function_name        = "hello-world"
+  function_name        = "${var.prefix}-hello-world"
   function_entry_point = "helloWorld"
   source_path = "../src/gcp/helloWorld"
 }
@@ -19,14 +20,14 @@ module "http_function" {
 module "event_function" {
   source               = "./modules/event_function"
   project              = var.project
-  function_name        = "hello-event"
+  function_name        = "${var.prefix}-hello-event"
   function_entry_point = "helloEvent"
-  source_path = "../src/gcp/helloEvent"
-  event_type = "google.pubsub.topic.publish"
-  resource = google_pubsub_topic.file_upload.name
+  source_path          = "../src/gcp/helloEvent"
+  event_type           = "google.pubsub.topic.publish"
+  resource             = google_pubsub_topic.file_upload.name
 }
 
-// publishes a pubsub event on file upload to cloud storage bucket
+// publish a pubsub event on file upload to cloud storage bucket
 resource "google_storage_notification" "upload_bucket_upload_notification" {
   bucket         = google_storage_bucket.upload_bucket.name
   payload_format = "JSON_API_V1"
@@ -37,10 +38,14 @@ resource "google_storage_notification" "upload_bucket_upload_notification" {
 
 // create the upload bucket
 resource "google_storage_bucket" "upload_bucket" {
-  name = "${var.project}-upload-bucket"
+  name = "${var.prefix}-${var.project}-upload-bucket"
+  location      = "EU"
+  force_destroy = true
+
+  uniform_bucket_level_access = true
 }
 
 // create the upload topic
 resource "google_pubsub_topic" "file_upload" {
-  name = "file-upload"
+  name = "${var.prefix}-file-upload"
 }

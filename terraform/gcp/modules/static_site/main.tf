@@ -14,7 +14,7 @@ resource "google_storage_bucket_object" "static_site" {
 }
 
 resource "google_storage_bucket" "static_site" {
-  name          = "${var.project}-static-site"
+  name          = var.name
   location      = "EU"
   force_destroy = true
 

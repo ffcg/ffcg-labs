@@ -10,14 +10,14 @@ namespace Forefront.ServerlessLab.Function
     {
         [FunctionName("StoreFileMetadataFunction")]
         public static void Run(
-            [BlobTrigger("files/{name}", Connection = "StorageConnection")]Stream blob, string name,
+            [BlobTrigger("files/{name}", Connection = "FileStorageConnectionsString")]Stream blob, string name,
             [CosmosDB(
                 databaseName: "ServerlessLab",
                 collectionName: "FileMetaData",
-                ConnectionStringSetting = "CosmosDBConnection")]out dynamic file,
+                ConnectionStringSetting = "DatabaseConnectionString")]out dynamic file,
             ILogger log)
         {
-            log.LogInformation($"C# Blob trigger function\n Name:{name} \n Size: {blob.Length} Bytes");
+            log.LogInformation($"C# Blob trigger function - Name:{name} - Size: {blob.Length} Bytes");
             file = new { Filename = name, Size = blob.Length, id = Guid.NewGuid() };
         }
     }

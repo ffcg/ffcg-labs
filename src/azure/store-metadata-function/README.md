@@ -24,12 +24,14 @@ At the moment there exists not Terraform to setup this infrastructure, use these
 ## Setup
 
 1. [Prepare VSCode for Azure function development](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp?tabs=in-process&pivots=programming-runtime-functions-v3#configure-your-environment)
-1. Clone this project
+1. Clone the repo
 1. Open project in VSCode, i.e. this folder
 1. Create a local.settings.json file based on template.settings.json and set DatabaseConnectionString to the connections string of the CosmosDB created above. And FileStorageConnectionsString to the connections string of the Storage Account(is under Access Keys), also set AzureWebJobsStorage to that connection string.
 1. Deploy the function using the built in support of VSCode, see this [article](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp?tabs=in-process&pivots=programming-runtime-functions-v3#sign-in-to-azure).
+1. Use the Azure navigator in VSCode and find Forefront BR Lab/Demo and your app function under it. Right click the Application Settings and select Upload local settings. This will set settings in the portal with the same values as the one in your local file.
 1. Generate a SAS token for the blob container called files, see this [article](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/document-translation/create-sas-tokens?tabs=Containers#create-sas-tokens-for-blobs-in-the-azure-portal).
 1. Open logs in the function monitor, under Functions in the Function App and then click 
 StoreFileMetadataFunction. Then Monitor and the Logs tab.
 1. Test to upload the test file in example_images and upload it with curl(replace STORAGE_ACCOUNT with the name of your storage account and SAS_TOKEN with the token you just created ): `curl -X PUT -T example_images/mandril_color.tif -H "x-ms-date: $(date -u)" -H "x-ms-blob-type: BlockBlob" "https://{STORAGE_ACCOUNT}.blob.core.windows.net/files/mandril.tif?{SAS_TOKEN}"`
 1. Look inside the Cosmos DB to see what metadata was posted.
+1. Congratulation you have taken another successful step in your serverless journey!

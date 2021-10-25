@@ -2,39 +2,33 @@
 ## Backend or FaaS Development with Azure Durable Functions .NET 
 
 #### Lab Description
-This is a laboration for Serverless in Azure. 
-A hands-on lab for [Azure Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview?tabs=csharp) with integrations to Azure BLOB Storage, Azure Service Bus, Twilio API, SendGrid API, etc.
+This is one of the hands-on labs for Serverless Develolpment in Azure using Azure Durable Functions, the extension of Azure Functions used for developing stateful long-running workflows in Serverless. 
 
-#### PREREQUISITES AND LAB ENVIRONMENT SETUP 
-
-* Basics xoncepts of Serverless Serverless Computing (If you are a student of Forefront's Serverless course, great!)
-* Basics ceoncepts  using Microsoft Azure 
-* Microsoft Azure account - Private or Organization Forefront acount 
-* Latest Version Visual Studio or VS Code
-* Azure Storage Explorer 
-* Programming Language C# .NET (You can code in other supported languages as well - see supported languages)
-* Install [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Cwindows%2Ccsharp%2Cportal%2Cbash%2Ckeda)
-* 
+This is a prepared mini lab authored by <a href="https://github.com/jonahandersson" target="_blank">Jonah Andersson</a> for [Azure Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview?tabs=csharp) with integrations to Azure BLOB Storage, Azure Service Bus, Twilio API, SendGrid API, etc and function chaining application patter.
 
 ### LAB INSTRUCTIONS 
 
 * Make sure you have access to the ffcg-serverless lab repo
-* Create a branch with branch name format "dev-serverless-<yourfullname>-azure" for Azure Lab 
-* Create a new Github repository using this as a starter template
-* Make sure you take note of the connection strings, storage container name, etc. 
-* STEP 4 
-* STEP 5
-*  
+* There is not exact instructions on what you need to do but there are suggested issues that you can pick to develop more with this lab. 
+* For open issues on this lab repo, check issues section. Choose one you like to work on!
+* Create a branch with branch name format "dev-<yourfullname>-azure-df-<issueId>" for this Azure Lab 
+* Create a new Github repository using this repo <a href="https://github.com/jonahandersson/serverlesslab-azure-durable-functionchaining-template" target="_blank">serverlesslab-azure-durable-functionchaining-template</a> as a starter template 
+* To use the template do the following: 
+  1. Click "Use Template" 
+ <img src="https://jonahsstorage.blob.core.windows.net/jcaphotos/UsingJonahsTemplate.png" width="600">
+  2. Fill in the necessary information to use the template. Don't check "Include branches" 
+ <img src="https://jonahsstorage.blob.core.windows.net/jcaphotos/UsingJonahsTemplateStep2.png" width="600">
+  3. Clone your own branch repo and work locally
+  4. The starter template repo has instructions including how to set up up your local lab environment, SendGrid API, Twilio API and local.settings.json
+  5. Deploy the finished function app to Azure if you have time and as you wish.
 
 ####  LAB SUBMISSION STEPS 
 
-* When you are done with your serverless laboration, please send a 
-* STEP 2 
-
+* When you are done with your serverless laboration, please commit your changes in your own repo and send PR to Serverless lab instructors Jonah, Jonas and Karl-Peter 
 
 ####  QUESTIONS OR NEED HELP? 
 
--- Who to contact if needs help with the lab. 
+ Contact <a href="mailto:jonah.andersson@forefront.se" target >Jonah Andersson</a> (who set up this lab)
 
 ####  RECOMMENDED LEARNING AND HANDS-ON RESOURCES 
  

@@ -19,7 +19,7 @@ namespace Forefront.ServerlessLab.Function
             [CosmosDB(
                 databaseName: "ServerlessLab",
                 collectionName: "FileMetaData",
-                ConnectionStringSetting = "CosmosDBConnection",
+                ConnectionStringSetting = "DatabaseConnectionString",
                 SqlQuery = "SELECT * FROM c order by c._ts desc")]
                 IEnumerable<UploadedFile> files,
             ILogger log)

@@ -3,6 +3,7 @@
 ## Usage
 
 ```sh
-az account set --subscription "FFCG - Lab/Demo"
-terraform apply -var "initials=kpa"
+az account set --subscription "Forefront BR Lab/Demo"
+terraform init
+terraform apply -var "prefix=kpa"
 ```

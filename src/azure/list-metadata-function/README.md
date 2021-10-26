@@ -2,7 +2,7 @@
 
 This Azure function triggers on HTTP GET/POST and retrieves metadata from all files stored in the Cosmos DB
 
-How to create functions and setting up bindings are described in the [documentation](https://docs.microsoft.com/en-us/azure/azure-functions/).
+How to create functions and setting up bindings are described in the [documentation](https://docs.microsoft.com/en-us/azure/azure-functions/). This lab is based upon the [VSCode C# quickstart](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp?tabs=in-process&pivots=programming-runtime-functions-v3) but feel free to follow any of the other guides if you prefer another IDE or language.
 
 This function uses [HTTP Trigger binding](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) and [Cosmos DB Input binding](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-input?tabs=csharp).
 
@@ -10,7 +10,7 @@ To have some data in the database, you should have setup the infrastructure for 
 
 ## Test existing example
 
-`curl https://kpa-functions.azurewebsites.net/api/ListMetadataFunction`
+`curl https://kpa-list-metadata.azurewebsites.net/api/ListMetadataFunction`
 
 
 ## Setup infrastructure
@@ -29,5 +29,5 @@ Several of the resources created in [StoreMetadataFunction](../store-metadata-fu
 1. Use the Azure navigator in VSCode and find Forefront BR Lab/Demo and your app function under it. Right click the Application Settings and select Upload local settings. This will set settings in the portal with the same values as the one in your local file.
 1. Open logs in the function monitor, under Functions in the Function App and then click 
 StoreFileMetadataFunction. Then Monitor and the Logs tab.
-1. Use curl to list metadata about all files: curl https://{your app service}.azurewebsites.net/api/ListMetadataFunction
+1. Use curl to list metadata about all files: curl https://{your function app}.azurewebsites.net/api/ListMetadataFunction
 1. Congratulation you have taken another successful step in your serverless journey!

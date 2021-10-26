@@ -2,7 +2,7 @@
 
 This Azure function triggers on files uploaded to a Blob container in a storage account and save some metadata about the file a Cosmos DB
 
-How to create functions and setting up bindings are described in the [documentation](https://docs.microsoft.com/en-us/azure/azure-functions/).
+How to create functions and setting up bindings are described in the [documentation](https://docs.microsoft.com/en-us/azure/azure-functions/). This lab is based upon the [VSCode C# quickstart](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp?tabs=in-process&pivots=programming-runtime-functions-v3) but feel free to follow any of the other guides if you prefer another IDE or language.
 
 This function uses [Blob Storage Trigger binding](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob-trigger?tabs=csharp) and [Cosmos DB Output binding](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-output?tabs=csharp).
 

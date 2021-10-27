@@ -14,12 +14,6 @@ A website hosted in a cloud storage bucket that queries a public API for file na
 
 ## Usage
 
-1. Log in using the google cloud sdk:
-
-    ```sh
-    gcloud init
-    ```
-
 1. Create default credentials
 
     ```terminal
@@ -77,4 +71,25 @@ A website hosted in a cloud storage bucket that queries a public API for file na
 
     ```sh
     Enter a value: yes
+    ```
+
+    ```output
+    Outputs:
+
+    https_trigger_url = "https://europe-west1-serverless-labs-328806.cloudfunctions.net/ja-hello-world"
+    public_url = "https://storage.googleapis.com/ja-serverless-labs-328806-static-site/index.html"
+    ```
+
+1. Update the (./public/index.html)[../../public/index.html] page to use the new https_trigger_url
+
+    ```html
+    const apiUrl =
+        "https://europe-west1-serverless-labs-328806.cloudfunctions.net/myprefix-hello-world";
+
+    ```
+
+1. Redeploy, don't forget to reapply your prefix:
+
+    ```sh
+    terraform apply
     ```

@@ -65,7 +65,7 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
 
 1. Check the result of the function:
 
-    browse to <https://console.cloud.google.com/functions/list?referrer=search&project=serverless-labs-328806>, click you function and select logs.
+    browse to <https://console.cloud.google.com/functions/list?referrer=search&project=serverless-labs-328806>, click your function and select logs.
 
 ## Local Development
 

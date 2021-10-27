@@ -1,4 +1,5 @@
 // publishes ./public to a publicly accessible bucket
+// 
 module "static_site" {
   name        = "${var.prefix}-${var.project}-static-site"
   source      = "./modules/static_site"
@@ -55,8 +56,13 @@ resource "google_pubsub_topic" "file_upload" {
   name    = "${var.prefix}-file-upload"
 }
 
-resource "google_app_engine_application" "app" {
-  project     = var.project
-  location_id = "europe-west"
-  database_type = "CLOUD_DATASTORE_COMPATIBILITY"
+// Enable notifications by giving the correct IAM permission to the service agent service account.
+// see, https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_notification
+data "google_storage_project_service_account" "gcs_account" {
+}
+
+resource "google_pubsub_topic_iam_binding" "gcs_service_agent_pubsub_publisher" {
+  topic   = google_pubsub_topic.file_upload.id
+  role    = "roles/pubsub.publisher"
+  members = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
 }

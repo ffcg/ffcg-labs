@@ -1,7 +1,7 @@
 terraform  {
   backend "gcs" {
     bucket = "serverless-labs-tfstate"
-    #prefix = "main"
+    prefix = "main"
   }
   required_providers {
     google = {}

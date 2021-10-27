@@ -24,7 +24,7 @@ This is a prepared mini lab authored by <a href="https://github.com/jonahanderss
 
 ####  LAB SUBMISSION STEPS 
 
-* When you are done with your serverless laboration, please commit your changes in your own repo and send PR to Serverless lab instructors Jonah, Jonas and Karl-Peter 
+* When you are done with your serverless laboration, please commit your changes in your own repo and send PR to Serverless lab instructors Jonah, Jonas and Karl-Petter 
 
 ####  QUESTIONS OR NEED HELP? 
 

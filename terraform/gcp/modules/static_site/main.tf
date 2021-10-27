@@ -11,6 +11,7 @@ resource "google_storage_bucket_object" "static_site" {
   name     = each.key
   source   = "${local.root_dir}/${each.key}"
   bucket   = google_storage_bucket.static_site.name
+  cache_control = "no-store"
 }
 
 resource "google_storage_bucket" "static_site" {

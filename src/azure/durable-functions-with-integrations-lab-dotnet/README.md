@@ -20,7 +20,8 @@ This is a prepared mini lab authored by <a href="https://github.com/jonahanderss
  <img src="https://jonahsstorage.blob.core.windows.net/jcaphotos/UsingJonahsTemplateStep2.png" width="600">
   3. Clone your own branch repo and work locally
   4. The starter template repo has instructions including how to set up up your local lab environment, SendGrid API, Twilio API and local.settings.json </br>
-  5. Deploy the finished function app to Azure if you have time and as you wish.
+  5. Deploy the finished function app to Azure if you have time and as you wish </br>
+  6. Create Unit Tests if you want too </br>
 
 ####  LAB SUBMISSION STEPS 
 

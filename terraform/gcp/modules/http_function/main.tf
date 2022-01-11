@@ -21,7 +21,8 @@ resource "null_resource" "source" {
 
 # Create bucket that will host the source code
 resource "google_storage_bucket" "bucket" {
-  name = "${var.project}-${lower(var.function_name)}-function"
+  location = "eu"
+  name     = "${var.project}-${lower(var.function_name)}-function"
 }
 
 # Add source code zip to bucket

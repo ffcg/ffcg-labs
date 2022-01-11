@@ -1,5 +1,5 @@
 locals {
-	root_dir = "../${var.source_path}"
+  root_dir = "../${var.source_path}"
   services = [
     "cloudfunctions.googleapis.com",
     "cloudbuild.googleapis.com"
@@ -7,10 +7,10 @@ locals {
 }
 
 resource "google_storage_bucket_object" "static_site" {
-  for_each = fileset(local.root_dir, "**")
-  name     = each.key
-  source   = "${local.root_dir}/${each.key}"
-  bucket   = google_storage_bucket.static_site.name
+  for_each      = fileset(local.root_dir, "**")
+  name          = each.key
+  source        = "${local.root_dir}/${each.key}"
+  bucket        = google_storage_bucket.static_site.name
   cache_control = "no-store"
 }
 
@@ -35,6 +35,6 @@ resource "google_storage_bucket" "static_site" {
 
 resource "google_storage_bucket_iam_member" "member" {
   bucket = google_storage_bucket.static_site.name
-  role = "roles/storage.objectViewer"
+  role   = "roles/storage.objectViewer"
   member = "allUsers"
 }

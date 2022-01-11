@@ -13,7 +13,7 @@ module "http_function" {
   project              = var.project
   function_name        = "${var.prefix}-hello-world"
   function_entry_point = "helloWorld"
-  source_path = "../src/gcp/helloWorld"
+  source_path          = "../src/gcp/helloWorld"
 }
 
 // deploys the hello-event cloud function on source change
@@ -34,7 +34,7 @@ resource "google_storage_notification" "upload_bucket_upload_notification" {
   payload_format = "JSON_API_V1"
   topic          = google_pubsub_topic.file_upload.id
   event_types    = ["OBJECT_FINALIZE"]
-  depends_on = [google_pubsub_topic_iam_binding.gcs_service_agent_pubsub_publisher]
+  depends_on     = [google_pubsub_topic_iam_binding.gcs_service_agent_pubsub_publisher]
   custom_attributes = {
     prefix = var.prefix
   }

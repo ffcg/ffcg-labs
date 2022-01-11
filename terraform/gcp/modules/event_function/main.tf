@@ -21,7 +21,8 @@ resource "null_resource" "source" {
 
 # Create bucket that will host the source code
 resource "google_storage_bucket" "bucket" {
-  name = "${var.project}-${lower(var.function_name)}-function"
+  location = "eu"
+  name     = "${var.project}-${lower(var.function_name)}-function"
 }
 
 # Add source code zip to bucket
@@ -50,9 +51,9 @@ resource "google_cloudfunctions_function" "function" {
   available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.zip.name
-  event_trigger  {
+  event_trigger {
     event_type = var.event_type
     resource   = var.resource
   }
-  entry_point           = var.function_entry_point
+  entry_point = var.function_entry_point
 }

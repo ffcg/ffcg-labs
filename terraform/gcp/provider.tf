@@ -1,10 +1,10 @@
-terraform  {
+terraform {
   backend "gcs" {
     bucket = "serverless-labs-tfstate"
     #prefix = "main"
   }
   required_providers {
-    google = {}
+    google      = {}
     google-beta = {}
   }
 }

@@ -49,8 +49,6 @@ exports.helloIngest = async pubsubMessage => {
   } else {
     console.log(`skipping content type ${data.contentType}.`);
   }
-
-
 }
 // [END functions_pubsub_subscribe]
 

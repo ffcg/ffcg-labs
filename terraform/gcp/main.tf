@@ -87,5 +87,5 @@ resource "google_bigquery_dataset" "hello_ingest" {
   friendly_name               = "hello_ingest"
   description                 = "event-driven ingested CSV data"
   location                    = "EU"
-  default_table_expiration_ms = 3600000
+  default_table_expiration_ms = 3600000 // table is removed after 60 minutes
 }

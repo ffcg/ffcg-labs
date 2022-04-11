@@ -18,8 +18,8 @@ exports.helloEvent = async pubsubMessage => {
   data = JSON.parse(Buffer.from(pubsubMessage.data, 'base64'))
   attributes = pubsubMessage.attributes
 
-  // The kind for the new entity
-  const kind = `Image`;
+  // Take the first part of the content-type as kind for the new entity. examples: image/png or text/csv
+  const kind = data.contentType.split("/")[0];
 
   // The name/ID for the new entity
   const name = `${attributes.prefix}-${data.name}`;

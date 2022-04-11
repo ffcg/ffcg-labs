@@ -60,9 +60,13 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
     curl -O https://storage.googleapis.com/cloud-samples-data/bigquery/us-states/us-states.csv
     ```
 
+    *TIP:* There are plenty of CSV:s avauilable on <https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html>.
+
 1. Upload a file:
 
     **Note** A content type header must be supplied or the cloud function will skip processing of the file
+
+    Files can be uplpoaded using curl in the example below, or simply be dragged-and-dropped into the cloud storage bucket at <https://console.cloud.google.com/storage/browser/<your prefix>-serverless-labs-328806-upload-bucket>
 
     ```sh
     curl --upload-file <file> \
@@ -84,7 +88,7 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
 
     browse to <https://console.cloud.google.com/functions/list?referrer=search&project=serverless-labs-328806>, click your function and select the logs tab.
 
-1. 
+1. Browse to biquery, and check that tables have been created under your dataset. Select a table and click preview to view the contents.
 
 ## Local Development
 

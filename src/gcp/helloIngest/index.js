@@ -24,7 +24,7 @@ exports.helloIngest = async pubsubMessage => {
   if (data.contentType == "text/csv") {
     const datasetId = process.env.DATASET_ID || "hello_ingest";
     // create a table with your prefix, and the filename containing only lowercase letters and underscore
-    const tableId = `${attributes.prefix}_${data.name}`.toLowerCase().replace(/[^a-z]/g,"_"); //replace(/[^\p{L}\p{M}\p{N}]/g,"_");
+    const tableId = `${data.name}`.toLowerCase().replace(/[^a-z]/g,"_"); //replace(/[^\p{L}\p{M}\p{N}]/g,"_");
     const bucketName = data.bucket
     const filename = data.name
   

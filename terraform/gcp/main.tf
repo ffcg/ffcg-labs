@@ -28,6 +28,21 @@ module "event_function" {
   resource             = google_pubsub_topic.file_upload.name
 }
 
+// deploys the hello-ingest cloud function on source change
+// hello event listens to the upload pubub topic
+module "ingest_function" {
+  source                = "./modules/event_function"
+  project               = var.project
+  function_name         = "${var.prefix}-hello-ingest"
+  function_entry_point  = "helloIngest"
+  source_path           = "../src/gcp/helloIngest"
+  event_type            = "google.pubsub.topic.publish"
+  resource              = google_pubsub_topic.file_upload.name
+  environment_variables = {
+    DATASET_ID = google_bigquery_dataset.hello_ingest.dataset_id
+  }
+}
+
 // publish a pubsub event on file upload to cloud storage bucket
 resource "google_storage_notification" "upload_bucket_upload_notification" {
   bucket         = google_storage_bucket.upload_bucket.name
@@ -65,4 +80,12 @@ resource "google_pubsub_topic_iam_binding" "gcs_service_agent_pubsub_publisher" 
   topic   = google_pubsub_topic.file_upload.id
   role    = "roles/pubsub.publisher"
   members = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
+}
+
+resource "google_bigquery_dataset" "hello_ingest" {
+  dataset_id                  = "${var.prefix}_hello_ingest"
+  friendly_name               = "hello_ingest"
+  description                 = "event-driven ingested CSV data"
+  location                    = "EU"
+  default_table_expiration_ms = 3600000
 }

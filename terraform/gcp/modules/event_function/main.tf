@@ -56,4 +56,5 @@ resource "google_cloudfunctions_function" "function" {
     resource   = var.resource
   }
   entry_point = var.function_entry_point
+  environment_variables = var.environment_variables
 }

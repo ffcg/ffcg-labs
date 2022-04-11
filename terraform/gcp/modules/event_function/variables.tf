@@ -8,3 +8,8 @@ variable "event_type" {
 variable "resource" {
   description = "The name or partial URI of the resource from which to observe events. For example, \"myBucket\" or \"projects/my-project/topics/my-topic\""
 }
+
+variable "environment_variables" {
+  type    = map(string)
+  default = {}
+}

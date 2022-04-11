@@ -1,6 +1,6 @@
-# HelloEvent
+# HelloIngest
 
-A cloud function that recieves a cloud storage event through google pubsub and writes the event data to cloud datastore.
+A cloud function that recieves a cloud storage event through google pubsub and imports an uploaded CSV file to bigquery.
 
 ## Perequisites
 
@@ -12,7 +12,7 @@ Using the google cloud sdk <https://console.cloud.google.com/home/dashboard?proj
 * node.js (for local development)
 * jsonquery (jq) for json formatting of output
 
-## Deploying
+## Deploying Manually
 
 Cloud functions can be deployed using the gui, see <https://cloud.google.com/functions/docs/quickstart-nodejs> or <https://cloud.google.com/functions/docs/deploying/console>.
 
@@ -22,7 +22,7 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
 
     ```sh
     git clone git@github.com:ffcg/serverless-lab.git
-    cd serverless-lab/src/helloEvent
+    cd serverless-lab/src/helloIngest
     ```
 
 1. Create a pubsub topic, see <https://cloud.google.com/pubsub/docs/admin>
@@ -55,17 +55,36 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
       --region=europe-west1
     ```
 
+1. Download a CSV file, or bring your own:
+    ```sh
+    curl -O https://storage.googleapis.com/cloud-samples-data/bigquery/us-states/us-states.csv
+    ```
+
 1. Upload a file:
 
+    **Note** A content type header must be supplied or the cloud function will skip processing of the file
+
     ```sh
-    curl -v --upload-file my-file.txt \
-    -H "Authorization: Bearer $(gcloud auth print-access-token)" \ 
-    'https://storage.googleapis.com/my-bucket/my-file.txt'
+    curl --upload-file <file> \
+    -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+    -H "Content-Type: text/csv" \
+    'https://storage.googleapis.com/<your prefix>-serverless-labs-328806-upload-bucket/<file>'
+    ```
+
+    **Example**
+
+    ```sh
+    curl --upload-file us-states.csv \
+    -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+    -H "Content-Type: text/csv" \
+    'https://storage.googleapis.com/jonasahnstedt-serverless-labs-328806-upload-bucket/us-states.csv'
     ```
 
 1. Check the result of the function:
 
-    browse to <https://console.cloud.google.com/functions/list?referrer=search&project=serverless-labs-328806>, click your function and select logs.
+    browse to <https://console.cloud.google.com/functions/list?referrer=search&project=serverless-labs-328806>, click your function and select the logs tab.
+
+1. 
 
 ## Local Development
 

@@ -43,7 +43,10 @@ exports.helloIngest = async pubsubMessage => {
     const [job] = await bigquery
       .dataset(datasetId)
       .table(tableId)
-      .load(storage.bucket(bucketName).file(filename), metadata);
+      .load(storage
+          .bucket(bucketName)
+          .file(filename),
+        metadata);
     // load() waits for the job to finish
     console.log(`Job ${job.id} completed.`);
   } else {

@@ -1,0 +1,17 @@
+{
+  "name": "serverless-lab-function",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*.test.js --timeout=20000"
+  },
+  "author": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0",
+    "proxyquire": "^2.1.0",
+    "sinon": "^7.3.0"
+  }
+}

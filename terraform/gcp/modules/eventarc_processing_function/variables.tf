@@ -2,6 +2,7 @@ variable "project" {
   description = "Google gcloud project ID to deploy function to"
   type = string
 }
+
 variable "function_name" {
   description = "Name of the function to deploy"
   type = string
@@ -15,16 +16,12 @@ variable "source_path" {
   type = string
 }
 
-variable "event_type" {
-  description = "Type of event to trigger on, see https://cloud.google.com/functions/docs/calling/"
-}
-variable "resource" {
-  description = "The name or partial URI of the resource from which to observe events. For example, 'myBucket' or 'projects/my-project/topics/my-topic'"
-  type = string
-}
-
 variable "environment_variables" {
   description = "Environment variables to pass to the cloud function"
   type    = map(string)
   default = {}
+}
+
+variable "region" {
+  description = "Region to run the variable in"
 }

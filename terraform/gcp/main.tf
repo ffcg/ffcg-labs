@@ -89,3 +89,14 @@ resource "google_bigquery_dataset" "hello_ingest" {
   location                    = "EU"
   default_table_expiration_ms = 3600000 // table is removed after 60 minutes
 }
+
+module "eventarc_processing_function" {
+  source                = "./modules/eventarc_processing_function"
+  project               = var.project
+  region                = var.region
+  function_name         = "${var.prefix}-hello-process"
+  function_entry_point  = "helloProcess"
+  source_path           = "../src/gcp/helloProcess"
+}
+
+

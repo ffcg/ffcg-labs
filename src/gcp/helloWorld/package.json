@@ -4,10 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/*.test.js --timeout=20000"
   },
   "author": "",
   "dependencies": {
     "@google-cloud/datastore": "^6.6.0"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0",
+    "proxyquire": "^2.1.0",
+    "sinon": "^7.3.0"
   }
 }

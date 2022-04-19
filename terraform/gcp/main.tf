@@ -97,6 +97,7 @@ module "eventarc_processing_function" {
   function_name         = "${var.prefix}-hello-process"
   function_entry_point  = "helloProcess"
   source_path           = "../src/gcp/helloProcess"
+  dataset_id            = google_bigquery_dataset.hello_ingest.dataset_id
 }
 
 

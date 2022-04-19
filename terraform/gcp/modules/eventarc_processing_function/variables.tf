@@ -25,3 +25,7 @@ variable "environment_variables" {
 variable "region" {
   description = "Region to run the variable in"
 }
+
+variable "dataset_id" {
+  description = "The dataset to trigger inserts for"
+}

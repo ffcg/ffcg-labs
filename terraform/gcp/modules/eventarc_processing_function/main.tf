@@ -81,14 +81,14 @@ resource "google_cloudfunctions2_function" "function" {
 
 }
 
-# TODO: to run as a cloud function trigger, SA needs event trigger, but SA can't be set due to issue below
-# This trigger needs the role roles/eventarc.eventReceiver granted to service account to receive events via Cloud Audit Logs.
-# https://github.com/hashicorp/terraform-provider-google/issues/11388 
-# resource "google_project_iam_member" "function_eventReceiver" {
-#   project = var.project
-#   role    = "roles/eventarc.eventReceiver"
-#   member  = "serviceAccount:${google_cloudfunctions2_function.function.service_config[0].service_account_email}"
-# }
+#TODO: to run as a cloud function trigger, SA needs event trigger, but SA can't be set due to issue below
+#This trigger needs the role roles/eventarc.eventReceiver granted to service account to receive events via Cloud Audit Logs.
+#https://github.com/hashicorp/terraform-provider-google/issues/11388 
+resource "google_project_iam_member" "function_eventReceiver" {
+  project = var.project
+  role    = "roles/eventarc.eventReceiver"
+  member  = "serviceAccount:${google_cloudfunctions2_function.function.service_config[0].service_account_email}"
+}
 
 resource "google_service_account" "eventarc" {
   account_id   = "${var.function_name}"
@@ -122,13 +122,13 @@ resource "google_eventarc_trigger" "trigger" {
   }
   matching_criteria {
     attribute = "methodName"
-    value     = "google.cloud.bigquery.v2.JobService.InsertJob"
+    value     = "google.cloud.bigquery.v2.JobService.Query" #"google.cloud.bigquery.v2.JobService.InsertJob"
   }
-  matching_criteria {
-    attribute = "resourceName"
-    operator  = "match-path-pattern"
-    value     = "/projects/serverless-labs-328806/datasets/jonasahnstedt_hello_ingest/*"
-  }
+  # matching_criteria {
+  #   attribute = "resourceName"
+  #   operator  = "match-path-pattern"
+  #   value     = "/projects/_/datasets/${var.dataset_id}/*"
+  # }
   matching_criteria {
     attribute = "serviceName"
     value     = "bigquery.googleapis.com"

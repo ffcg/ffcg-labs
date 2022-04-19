@@ -2,15 +2,20 @@
 
 Deploys a serverless example that deploys the following:
 
-Files uploaded to cloud storage generate pubsub events that stores metadata about the uploaded image to cloud datastore.
-A website hosted in a cloud storage bucket that queries a public API for file names stored in cloud datastore
+Files uploaded to Cloud Storage generate Pub/Sub events that stores metadata about the uploaded image to Cloud Datastore.
+A website hosted in a Cloud Storage bucket queries a public API for file names stored in Cloud Datastore.
+
+<!-- You can choose to run these scripts either in the terminal of your workstation or in the GCP command line interface.-->
 
 ## Prerequisites
 
-* terraform 1.0.x
+### Installed locally
+* Terraform 1.0.x
 * gcloud sdk
 
-**or** using the google cloud sdk <https://console.cloud.google.com/home/dashboard?project=serverless-labs-328806&cloudshell=true>
+**or** 
+
+use the Coogle Cloud shell <https://console.cloud.google.com/home/dashboard?project=serverless-labs-328806&cloudshell=true>
 
 ## Usage
 
@@ -30,12 +35,17 @@ A website hosted in a cloud storage bucket that queries a public API for file na
 
 1. Initialize terraform
 
-    Set a unique prefix, or you'll have a collision with other lab atendees and redeploy each other's resources:
-
-    Recommended is to use only alpha characters, possibly numbers and dashes, but it hasn't been tested.
+    Change directory to /serverless-lab/terraform/gcp if you have not already
 
     ```terminal
-    terraform init -upgrade -backend-config="prefix=<your prefix here>"
+    cd ./terraform/gcp
+    ```
+
+
+    Select a unique prefix YOUR-PREFIX, e.g. `john-doe` using only lowercase alpha characters, or you'll have a collision with other lab atendees and redeploy each other's resources:
+
+    ```terminal
+    terraform init -upgrade -backend-config="prefix=<YOUR-PREFIX>"
     ```
 
     **Example:**
@@ -46,17 +56,18 @@ A website hosted in a cloud storage bucket that queries a public API for file na
 
 1. Deploy Changes
 
-    When queried for a unique prefix, use the same prefix as above:
+    Run terraform. When queried for a unique prefix, use the same prefix as above.
 
     ```terminal
     terraform apply
     ```
 
+
     ```output
     var.prefix
-    The initials or similar of the student for the lab, e.g. ja for John Anderson. Will be used to prefix resources.
+    The initials or similar of the student for the lab, e.g. jonasahnstedt for John Anderson. Will be used to prefix resources.
 
-    Enter a value: <your prefix here>
+    Enter a value: <YOUR-PREFIX>
     ```
 
     **Example:**
@@ -67,7 +78,7 @@ A website hosted in a cloud storage bucket that queries a public API for file na
 
 1. Confirm
 
-    You can evaluate the output to see what has been changed or added, but that's for a different competence track
+    You can evaluate the output to see what has been changed or added, if you want but that's for a different competence track
 
     ```sh
     Enter a value: yes
@@ -76,15 +87,15 @@ A website hosted in a cloud storage bucket that queries a public API for file na
     ```output
     Outputs:
 
-    https_trigger_url = "https://europe-west1-serverless-labs-328806.cloudfunctions.net/ja-hello-world"
-    public_url = "https://storage.googleapis.com/ja-serverless-labs-328806-static-site/index.html"
+    https_trigger_url = "https://europe-west1-serverless-labs-328806.cloudfunctions.net/YOUR-PREFIX-hello-world"
+    public_url = "https://storage.googleapis.com/YOUR-PREFIX-serverless-labs-328806-static-site/index.html"
     ```
 
-1. Update the (./public/index.html)[../../public/index.html] page to use the new https_trigger_url
+1. Modify the [../../public/index.html](../../public/index.html) page to use the new https_trigger_url
 
     ```html
     const apiUrl =
-        "https://europe-west1-serverless-labs-328806.cloudfunctions.net/myprefix-hello-world";
+        "https://europe-west1-serverless-labs-328806.cloudfunctions.net/YOUR-PREFIX-hello-world";
 
     ```
 
@@ -93,3 +104,5 @@ A website hosted in a cloud storage bucket that queries a public API for file na
     ```sh
     terraform apply
     ```
+
+1. Return to the LAB_INSTRUCTIONS

@@ -3,7 +3,16 @@
 Deploys a serverless example that deploys the following:
 
 Files uploaded to Cloud Storage generate Pub/Sub events that stores metadata about the uploaded image to Cloud Datastore.
-A website hosted in a Cloud Storage bucket queries a public API for file names stored in Cloud Datastore.
+A website hosted in a Cloud Storage bucket queries a public API for file names stored in Cloud Datastore:
+
+```mermaid
+flowchart TD
+  workstation[You\nYour Laptop] --> |file_upload| upload_bucket
+  upload_bucket[Upload Bucket\nCloud Storage] --> upload_event[Upload Event\nCloud Pub/Sub]
+  upload_event --> ingest_function[helloIngest\nIngest CSV file\nCloud Function] --> bigquery_dataset[ingest\nBigQuery Dataset] --> bigquery_table[filename_csv\nBigquery Table]
+  upload_event --> datastore_write_function[helloEvent\nStore file info\nCloud Function] --> datastore
+  workstation <--> |browse| public_bucket[Static Site\nCloud Storage] <--> |api| datastore_read_function[helloWorld\nRead Datastore\nCloud Function] --> datastore[ kind=Content-type\nCloud Datastore]
+```
 
 <!-- You can choose to run these scripts either in the terminal of your workstation or in the GCP command line interface.-->
 
@@ -19,7 +28,7 @@ use the Coogle Cloud shell <https://console.cloud.google.com/home/dashboard?proj
 
 ## Usage
 
-1. Create default credentials
+1. Create default credentials. These are used by terraform for authentication:
 
     ```terminal
     gcloud auth application-default login
@@ -27,7 +36,7 @@ use the Coogle Cloud shell <https://console.cloud.google.com/home/dashboard?proj
 
     **or**
 
-    Create an access token that is valid for 1 hour and only in the terminal that you execute the command in:
+    Create an access token that is valid for 1 hour and only in the terminal that you execute the command in. If both options are used, this takes preceedence.
 
     ```sh
     export GOOGLE_OAUTH_ACCESS_TOKEN=$(gcloud auth print-access-token)
@@ -40,7 +49,6 @@ use the Coogle Cloud shell <https://console.cloud.google.com/home/dashboard?proj
     ```terminal
     cd ./terraform/gcp
     ```
-
 
     Select a unique prefix YOUR-PREFIX, e.g. `john-doe` using only lowercase alpha characters, or you'll have a collision with other lab atendees and redeploy each other's resources:
 
@@ -76,6 +84,12 @@ use the Coogle Cloud shell <https://console.cloud.google.com/home/dashboard?proj
     Enter a value: jonasahnstedt
     ```
 
+    You can also add the prefix as an argument to terraform commands:
+
+    ```sh
+    terraform apply -var prefix=<your prefix>
+    ```
+
 1. Confirm
 
     You can evaluate the output to see what has been changed or added, if you want but that's for a different competence track
@@ -102,7 +116,14 @@ use the Coogle Cloud shell <https://console.cloud.google.com/home/dashboard?proj
 1. Redeploy, don't forget to reapply your prefix:
 
     ```sh
-    terraform apply
+    terraform apply -var prefix=<your prefix>
     ```
 
-1. Return to the LAB_INSTRUCTIONS
+    This will compare your backend state with your terraform code and add, modify or remove anything that is not up to date, including:
+
+    * Changing the contents of the `public` folder (did you remember to change the `apiUrl`)
+    * Changing any of the `functions src`
+    * updating any `terraform` resources
+
+1. Return to the [lab instructions](../../LAB.md)
+

@@ -1,6 +1,6 @@
 # HelloIngest
 
-A cloud function that recieves a cloud storage event through google pubsub and imports an uploaded CSV file to bigquery.
+A cloud function that recieves a cloud storage event through google pubsub and ingests the uploaded CSV file to bigquery.
 
 ## Perequisites
 
@@ -35,18 +35,30 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
 
     **Note:** since bucket names are globally unique, it's best to add the project name to your storage bucket name. Add a personal prefix to the bucket name to separate it from other lab members
 
-    Create the bucket and add a file change notification, see <https://cloud.google.com/storage/docs/gsutil/commands/mb> and <https://cloud.google.com/storage/docs/reporting-changes#gsutil>:
+    Create the bucket and add a file change notification:
 
     ```sh
-    gsutil mb -b on -l EU gs://<your prefix>-$(gcloud config get-value project)-upload-bucket
-    gsutil notification create -t <your prefix>-hello-event -f json -e OBJECT_FINALIZE gs://<your prefix>-$(gcloud config get-value project)-upload-bucket -m prefix=<your prefix>
+    gsutil mb -b on -l EU gs://<your prefix>-serverless-labs-32880-upload-bucket
+    
+    gsutil notification create gs://<your prefix>-serverless-labs-32880-upload-bucket \
+        -t <your prefix>-hello-event \
+        -f json \
+        -e OBJECT_FINALIZE \
+        -m prefix=<your prefix>
     ```
 
+    This publishes an event to the topic `<your prefix>-hello-event` with `json` payload, when an object is created `OBJECT_FINALIZE` with an additional attribute `prefix` whenever a file uploaded to your bucket. 
+
+    For more info about gsutil commands, see <https://cloud.google.com/storage/docs/gsutil/commands/mb> and <https://cloud.google.com/storage/docs/reporting-changes#gsutil>
+
 1. Deploy the function, see <https://cloud.google.com/functions/docs/calling/pubsub>:
+
+    In the folder containing the helloIngest source:
 
     for example:
 
     ```sh
+    cd src/gcp/helloIngest
     gcloud functions deploy <your prefix>-hello-event \
       --entry-point helloEvent \
       --runtime=nodejs14 \
@@ -60,19 +72,21 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
     curl -O https://storage.googleapis.com/cloud-samples-data/bigquery/us-states/us-states.csv
     ```
 
-    *TIP:* There are plenty of CSV:s avauilable on <https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html>.
+    *TIP:* There are plenty of CSV:s avauilable at <https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html>.
 
 1. Upload a file:
 
-    **Note** A content type header must be supplied or the cloud function will skip processing of the file
+    **Note** A content type header must be supplied or the cloud function will skip processing of the file unless it's `text/csv`.
 
-    Files can be uplpoaded using curl in the example below, or simply be dragged-and-dropped into the cloud storage bucket at <https://console.cloud.google.com/storage/browser/<your prefix>-serverless-labs-328806-upload-bucket>
+    Files can be uploaded to the cloud console: https://console.cloud.google.com/storage/browse, click your upload bucket `<your prefix>-serverless-labs-328806-upload-bucket`, drag and drop files, or click upload.
+
+    Files can also be uploaded using `curl`. This requires adding an authorization header and content type header for the file type to be successfilly identified. csv files should be `text/csv`.
 
     ```sh
-    curl --upload-file <file> \
+    curl -v --upload-file my-file.txt \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: text/csv" \
-    'https://storage.googleapis.com/<your prefix>-serverless-labs-328806-upload-bucket/<file>'
+    'https://storage.googleapis.com/my-bucket/my-file.txt'
     ```
 
     **Example**
@@ -89,6 +103,11 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
     browse to <https://console.cloud.google.com/functions/list?referrer=search&project=serverless-labs-328806>, click your function and select the logs tab.
 
 1. Browse to biquery, and check that tables have been created under your dataset. Select a table and click preview to view the contents.
+
+    <https://console.cloud.google.com/bigquery?referrer=search&project=serverless-labs-328806>
+
+    Expand the `serverless-labs-328806` dataset 
+    
 
 ## Local Development
 

@@ -40,14 +40,16 @@ Manual Deployment?
 
 **NOTE** you should use a `different prefix` than when you deployed manually, otherwise the resources you're trying to create already exist.
 
-Infrastructure can be deployed automatically using terraform, see [terraform/gcp/README.md](terraform/gcp/README.md) and [terraform/azure/README.md](terraform/azure/README.md).
-
 1. Deploying this function can be done manually by simply copy pasting text from the readme files either directly from github or by cloning the repo to your workstation or cloud shell:
 
     ```sh
     git clone https://github.com/ffcg/serverless-lab.git
     cd serverless-lab
     ```
+
+1. Infrastructure can be deployed automatically using terraform, see [terraform/gcp/README.md](terraform/gcp/README.md) and [terraform/azure/README.md](terraform/azure/README.md).
+
+    After deploying the terraform code, you can come back and review the result.
 
 1. Log in to the GUI of your selected cloud provider and try to verify which services has been created. Try to map each module of the Terraform code with the service that was created:
 

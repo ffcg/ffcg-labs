@@ -1,6 +1,15 @@
 # HelloIngest
 
-A cloud function that recieves a cloud storage event through google pubsub and ingests the uploaded CSV file to bigquery.
+A simple data pipeline that ingests CSV files into bigquery whenever one is uploaded to a cloud storage bucket.
+
+When a file is upoaded, this triggers a pubsub event, that triggers an ingest cloud function, creating a table matching the file name of the uploaded file in bigquery:
+
+```mermaid
+flowchart TD
+  workstation[You\nYour Laptop] --> |file_upload| upload_bucket
+  upload_bucket[Upload Bucket\nCloud Storage] --> upload_event[Upload Event\nCloud Pub/Sub]
+  upload_event --> ingest_function[helloIngest\nIngest CSV file\nCloud Function] --> bigquery_dataset[ingest\nBigQuery Dataset] --> bigquery_table[filename_csv\nBigquery Table]
+```
 
 ## Perequisites
 
@@ -14,9 +23,9 @@ Using the google cloud sdk <https://console.cloud.google.com/home/dashboard?proj
 
 ## Deploying Manually
 
-Cloud functions can be deployed using the gui, see <https://cloud.google.com/functions/docs/quickstart-nodejs> or <https://cloud.google.com/functions/docs/deploying/console>.
+This section describes how to deploy using the gcloud CLI:
 
-Or the command line tools, see <https://cloud.google.com/functions/docs/deploying/filesystem>
+**NOTE:** In serverless-labs everyone runs their labs in the same project. This requires that we separate everything using a unique prefix. Whenever the instruction state `<your prefix>`, replace it with a unique prefix, such as a few characters from your first and last names.
 
 1. Clone the repo:
 

@@ -49,11 +49,12 @@ This section describes how to deploy using the gcloud CLI:
     ```sh
     gsutil mb -b on -l EU gs://<your prefix>-serverless-labs-32880-upload-bucket
     
-    gsutil notification create gs://<your prefix>-serverless-labs-32880-upload-bucket \
+    gsutil notification create \
         -t <your prefix>-hello-event \
         -f json \
         -e OBJECT_FINALIZE \
-        -m prefix=<your prefix>
+        -m prefix:<your prefix> \
+        gs://<your prefix>-serverless-labs-32880-upload-bucket
     ```
 
     This publishes an event to the topic `<your prefix>-hello-event` with `json` payload, when an object is created `OBJECT_FINALIZE` with an additional attribute `prefix` whenever a file uploaded to your bucket. 

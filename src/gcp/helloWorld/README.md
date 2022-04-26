@@ -21,7 +21,7 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
 1. Clone the repo:
 
     ```sh
-    git clone git@github.com:ffcg/serverless-lab.git
+    git clone https://github.com/ffcg/serverless-lab.git
     cd serverless-lab/src/helloWorld
     ```
 

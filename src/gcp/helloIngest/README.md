@@ -30,7 +30,7 @@ This section describes how to deploy using the gcloud CLI:
 1. Clone the repo:
 
     ```sh
-    git clone git@github.com:ffcg/serverless-lab.git
+    git clone https://github.com/ffcg/serverless-lab.git
     cd serverless-lab/src/helloIngest
     ```
 

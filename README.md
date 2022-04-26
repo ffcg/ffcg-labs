@@ -1,6 +1,6 @@
 # Serverless lab
 
-To run this as a lab, see [LAB.md](LAB.md)
+To run this as a lab, see [GCP_INGEST_LAB.md](GCP_INGEST_LAB.md)
 
 ## Prerequisites
 

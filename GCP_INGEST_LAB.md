@@ -43,6 +43,46 @@ This lab section is hosted by qwiklabs, follow the instructions at <https://part
 
 If you do not have access to partner qwiklabs, the instructions are available here, <https://www.cloudskillsboost.google/focuses/3692?parent=catalog>
 
+### Step-by-step if you don't have access
+
+1. Open up the bigquery console:
+
+    Browse to the bigquery console: <https://console.cloud.google.com/bigquery?project=serverless-labs-328806>
+
+1. Create a Dataset
+
+    1. Click the **Hambuerger Menu** next to your project **serverless-labs-328860** and click `Create Dataset`.
+
+    1. In the **Dataset ID** field, enter a unique name for your dataset
+
+    1. In the **Data location** field, enter `EU`
+
+    1. Click **Create Dataset**
+
+1. Create a table from CSV
+
+    1. Expand the project **serverless-labs-328860**
+
+    1. Click the **Hambuerger Menu** next to your dataset and Click **Create Table**
+
+    1. In the **Create Table** form, Click **Create Table From**, and select `Upload`
+
+    1. Click **Browse** next to the **Select File** Field, and select the [hw_25000.csv](./terraform/gcp/hw_25000.csv) file.
+
+    1. Enter `hw_25000` in the **Table** Field
+
+    1. Under **Schema** select `Auto Detect`
+
+    1. Click **Query** to open a query window
+
+    1. Enter your query and click **run** to execute the query
+
+        Note the text stating `This query will process 585.94 KB when run.`. GCP provides 10TB of free querying each month, so querying is essentially free for small datasets. 
+
+1. Query the table:
+
+    1. Click the **Hambuerger Menu** next to your dataset and Click **Create Table**
+
 ## Event-driven ingest pipeline using gcloud CLI
 
 Premise: The same Colleague now asks you for the third day in a row to make a CSV file available. It's time to automate the process, and make the CSV ingest self-service.
@@ -98,7 +138,7 @@ Follow the instructions at [terraform/gcp](./terraform/gcp/README.md). This will
     SELECT ... as average_height_cm FROM `serverless-labs-328806.jonasahnstedt_hello_ingest.hw_25000_csv`
     ```
 
-1. What's the average weight? In kilograms?
+1. What's the average weight in pounts? In kilograms?
 
     ```sql
     SELECT AVG(Weight_Pounds_) as average_weight FROM `serverless-labs-328806.jonasahnstedt_hello_ingest.hw_25000_csv`

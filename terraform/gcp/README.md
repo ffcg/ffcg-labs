@@ -53,13 +53,13 @@ use the Coogle Cloud shell <https://console.cloud.google.com/home/dashboard?proj
     Select a unique prefix YOUR-PREFIX, e.g. `john-doe` using only lowercase alpha characters, or you'll have a collision with other lab atendees and redeploy each other's resources:
 
     ```terminal
-    terraform init -upgrade -backend-config="prefix=<YOUR-PREFIX>"
+    terraform init -reconfigure -upgrade -backend-config="prefix=<YOUR-PREFIX>"
     ```
 
     **Example:**
 
     ```terminal
-    terraform init -upgrade -backend-config="prefix=jonasahnstedt"
+    terraform init -reconfigure -upgrade -backend-config="prefix=jonasahnstedt"
     ```
 
 1. Deploy Changes

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "GKXsigW2sJqup1HPnG6EWE5HdqzpQUWvsZRXP/ma2dQplnVVlIkTvAzdP7SLY+oxbLFYT4eN4idqkxvoCPkjDg==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\vladislavs.gaidass\\Documents\\GitHub\\ffcg-labs\\azure-bicep-labs\\01-adf-file-ingest\\projects\\lab_db\\lab_db.sqlproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vladislavs.gaidass\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.0\\microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "C:\\Users\\vladislavs.gaidass\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net46\\1.0.0\\microsoft.netframework.referenceassemblies.net46.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,10 @@
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\bin\Debug\lab_db.dacpac
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\obj\Debug\lab_db.sqlproj.AssemblyReference.cache
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\obj\Debug\Model.xml
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\obj\Debug\refactor.xml
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\obj\Debug\postdeploy.sql
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\obj\Debug\predeploy.sql
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\obj\Debug\lab_db.dll
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\obj\Debug\lab_db.pdb
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\bin\Debug\lab_db.dll
+c:\Users\vladislavs.gaidass\Documents\GitHub\ffcg-labs\azure-bicep-labs\01-adf-file-ingest\projects\lab_db\bin\Debug\lab_db.pdb

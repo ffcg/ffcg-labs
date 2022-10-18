@@ -17,8 +17,8 @@ param storageAccountType string = 'Standard_LRS'
 @description('Location for the storage account.')
 param location string = resourceGroup().location
 
-@description('User-assigned Managed Identity name to run deployment scripts')
-param uamiName string
+// @description('User-assigned Managed Identity name to run deployment scripts')
+// param uamiName string
 
 @description('Anchor time for SAS tokens. Default is set to utcNow')
 param anchorTime string = utcNow('yyyy-MM-ddTHH:mm:ssZ')
@@ -46,9 +46,9 @@ resource stagingContainer 'Microsoft.Storage/storageAccounts/blobServices/contai
   ]
 }
 
-resource uami 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' existing = {
-  name: uamiName
-}
+// resource uami 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' existing = {
+//   name: uamiName
+// }
 
 output storageAccountName string = storageAccountName
 output containerName string = containerName

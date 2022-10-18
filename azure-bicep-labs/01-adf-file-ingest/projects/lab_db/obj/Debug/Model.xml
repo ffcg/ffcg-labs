@@ -117,9 +117,10 @@
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="7" />
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[datetime]" />
+											<References ExternalSource="BuiltIns" Name="[datetime2]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -133,9 +134,10 @@
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="7" />
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[datetime]" />
+											<References ExternalSource="BuiltIns" Name="[datetime2]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -256,7 +258,6 @@
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[taxi_rides].[payment_type]">
-						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -273,7 +274,6 @@
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[taxi_rides].[company]">
-						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">

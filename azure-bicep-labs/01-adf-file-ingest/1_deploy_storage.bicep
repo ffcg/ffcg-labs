@@ -13,29 +13,29 @@ param localIpAddress string
 
 var rg = resourceGroup()
 
-module mi './modules/managed_identity.bicep' = {
-  name: 'miDeploy'
-  params: {
-    location: rg.location
-    prefix: prefix
-  }
-}
+// module mi './modules/managed_identity.bicep' = {
+//   name: 'miDeploy'
+//   params: {
+//     location: rg.location
+//     prefix: prefix
+//   }
+// }
 
 module sa './modules/storage-account/main.bicep' = {
-  dependsOn: [
-    mi
-  ]
+  // dependsOn: [
+  //   mi
+  // ]
   name: '${prefix}_storage_deploy'
   params: {
     location: rg.location
     prefix: prefix
-    uamiName: mi.outputs.user_mi_name
+    //uamiName: mi.outputs.user_mi_name
   }
 }
 
 module db './modules/azure-sql-db/main.bicep' = {
   dependsOn: [
-    mi
+    //mi
     sa
   ]
   name: '${prefix}_sql_deploy'

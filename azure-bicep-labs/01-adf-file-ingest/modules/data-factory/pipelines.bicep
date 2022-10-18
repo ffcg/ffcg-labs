@@ -4,19 +4,15 @@ param dataFactoryName string
 @description('ADF folder name')
 param folderName string = 'Main'
 
-@description('ADF linked services object')
-param datasetNames object
+@description('ADF data flow name')
+param dataFlowName string
 
 resource dataFactory 'Microsoft.DataFactory/factories@2018-06-01' existing = {
   name: dataFactoryName
 }
 
-resource dsInput 'Microsoft.DataFactory/factories/datasets@2018-06-01' existing = {
-  name: datasetNames.input
-}
-
-resource dsOutput 'Microsoft.DataFactory/factories/datasets@2018-06-01' existing = {
-  name: datasetNames.output
+resource flow 'Microsoft.DataFactory/factories/dataflows@2018-06-01' existing = {
+  name: dataFlowName
 }
 
 resource pplnTaxiRides 'Microsoft.DataFactory/factories/pipelines@2018-06-01' = {
@@ -26,46 +22,37 @@ resource pplnTaxiRides 'Microsoft.DataFactory/factories/pipelines@2018-06-01' = 
     activities: [
       {
         name: 'IngestTaxiRides'
-        type: 'Copy'
-        inputs: [
-          {
-            parameters: {}
-            referenceName: dsInput.name
-            type: 'DatasetReference'
-          }
-        ]
-        outputs: [
-          {
-            parameters: {}
-            referenceName: dsOutput.name
-            type: 'DatasetReference'
-          }
-        ]
+        type: 'ExecuteDataFlow'
         typeProperties: {
-          source: {
-            type: 'DelimitedTextSource'
-            formatSettings: {
-              type: 'DelimitedTextReadSettings'
-              skipLineCount: 1
-            }
-            storeSettings: {
-              type: 'AzureBlobStorageReadSettings'
-              recursive: true
+          compute: {
+            // marked as Small in ADF UI
+            computeType: 'General'
+            coreCount: 8
+          }
+          dataFlow: {
+            referenceName: flow.name
+            type: 'DataFlowReference'
+            datasetParameters: {
+              srcTaxiRidesBlob: {
+                  fileName: {
+                      value: '@pipeline().parameters.fileName'
+                      type: 'Expression'
+                  }
+              }
             }
           }
-          sink: {
-            type: 'AzureSqlSink'
-            writeBehavior: 'insert'
-          }
+          traceLevel: 'fine'
         }
       }
     ]
-    description: 'Demo pipeline'
     folder: {
       name: folderName
     }
-    parameters: {}
-    variables: {}
+    parameters: {
+      fileName: {
+        type: 'string'
+      }
+    }
   }
 }
 

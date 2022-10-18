@@ -25,7 +25,9 @@ resource blobUpdateTrigger 'Microsoft.DataFactory/factories/triggers@2018-06-01'
     type: 'BlobEventsTrigger'
     pipelines: [
       {
-        parameters: {}
+        parameters: {
+          fileName: '@triggerBody().fileName'
+        }
         pipelineReference: {
           referenceName: pipelineName
           type: 'PipelineReference'
@@ -43,3 +45,5 @@ resource blobUpdateTrigger 'Microsoft.DataFactory/factories/triggers@2018-06-01'
     }
   }
 }
+
+output triggerName string = blobUpdateTrigger.name

@@ -52,15 +52,27 @@ module adfDatasets 'datasets.bicep' = {
   }
 }
 
-module adfPipelines 'pipelines.bicep' = {
+module adfDataFlows 'data_flows.bicep' = {
   dependsOn: [
     adfDatasets
+  ]
+  name: '${prefix}_adf_flow_deploy'
+  params: {
+    dataFactoryName: adfInstance.outputs.dataFactoryName
+    folderName: folderName
+    datasetNames: adfDatasets.outputs.datasetNames
+  }
+}
+
+module adfPipelines 'pipelines.bicep' = {
+  dependsOn: [
+    adfDataFlows
   ]
   name: '${prefix}_adf_ppln_deploy'
   params: {
     dataFactoryName: adfInstance.outputs.dataFactoryName
-    datasetNames: adfDatasets.outputs.datasetNames
     folderName: folderName
+    dataFlowName: adfDataFlows.outputs.dataFlowName
   }
 }
 
@@ -76,3 +88,6 @@ module adfTriggers 'triggers.bicep' = {
     srcContainerName: srcStorageContainerName
   }
 }
+
+output dataFactoryName string = adfInstance.outputs.dataFactoryName
+output triggerName string = adfTriggers.outputs.triggerName

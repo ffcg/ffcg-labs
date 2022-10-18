@@ -38,7 +38,11 @@ resource dsSaInputTaxiRides 'Microsoft.DataFactory/factories/datasets@2018-06-01
       referenceName: lsSrcStorageAccount.name
       type: 'LinkedServiceReference'
     }
-    parameters: {}
+    parameters: {
+      fileName: {
+        type: 'string'
+      }
+    }
     schema: [
       { name: 'unique_key', type: 'string' }
       { name: 'taxi_id', type: 'string' }
@@ -64,9 +68,11 @@ resource dsSaInputTaxiRides 'Microsoft.DataFactory/factories/datasets@2018-06-01
       quoteChar: '\''
       location: {
         type: 'AzureBlobStorageLocation'
-        fileName: 'chicago_taxi_trips_*.csv'
-        folderPath: ''
         container: srcContainer.name
+        fileName: {
+          value: '@dataset().fileName'
+          type: 'Expression'
+        }
       }
     }
   }
@@ -92,22 +98,22 @@ resource dsSqlTaxiRides 'Microsoft.DataFactory/factories/datasets@2018-06-01' = 
     parameters: {}
     // https://learn.microsoft.com/en-us/azure/data-factory/connector-sql-server?tabs=data-factory#data-type-mapping-for-sql-server
     schema: [
-      { name: 'unique_key', type: 'string' }
-      { name: 'taxi_id', type: 'string' }
-      { name: 'trip_start_timestamp', type: 'datetime' }
-      { name: 'trip_end_timestamp', type: 'datetime' }
-      { name: 'trip_seconds', type: 'int' }
-      { name: 'trip_miles', type: 'double' }
-      { name: 'fare', type: 'decimal' }
-      { name: 'tips', type: 'decimal' }
-      { name: 'tolls', type: 'decimal' }
-      { name: 'extras', type: 'decimal' }
-      { name: 'trip_total', type: 'decimal' }
-      { name: 'payment_type', type: 'string' }
-      { name: 'company', type: 'string' }
-      { name: 'pickup_latitude', type: 'string' }
-      { name: 'pickup_longitude', type: 'string' }
-      { name: 'record_created_at', type: 'datetime' }
+      { name: 'unique_key', type: 'nvarchar' }
+      { name: 'taxi_id', type: 'nvarchar' }
+      { name: 'trip_start_timestamp', type: 'datetime2', scale: 7 }
+      { name: 'trip_end_timestamp', type: 'datetime2', scale: 7 }
+      { name: 'trip_seconds', type: 'int', precision: 10}
+      { name: 'trip_miles', type: 'float', precision: 15 }
+      { name: 'fare', type: 'decimal', precision: 18, scale: 0 }
+      { name: 'tips', type: 'decimal', precision: 18, scale: 0 }
+      { name: 'tolls', type: 'decimal', precision: 18, scale: 0 }
+      { name: 'extras', type: 'decimal', precision: 18, scale: 0 }
+      { name: 'trip_total', type: 'decimal', precision: 18, scale: 0 }
+      { name: 'payment_type', type: 'nvarchar' }
+      { name: 'company', type: 'nvarchar' }
+      { name: 'pickup_latitude', type: 'nvarchar' }
+      { name: 'pickup_longitude', type: 'nvarchar' }
+      { name: 'record_created_at', type: 'datetime', precision: 23, scale: 3 }
     ]
   }
 }

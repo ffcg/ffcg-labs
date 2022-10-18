@@ -26,3 +26,6 @@ module adfPipeline './modules/data-factory/main.bicep' = {
     destSqlDatabaseConnectionString: destSqlDatabaseConnectionString
   }
 }
+
+output dataFactoryName string = adfPipeline.outputs.dataFactoryName
+output dataFactoryTriggerName string = adfPipeline.outputs.triggerName

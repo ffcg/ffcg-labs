@@ -6,9 +6,9 @@ The lab requires no coding but you are encouraged to look at the code to get an 
 
 1. Manual Ingest using the cloud console
 
-1. Event-driven ingest pipeline using gcloud CLI
+2. Event-driven ingest pipeline using gcloud CLI
 
-1. Event-driven ingest pipeline using infrastructure as code (terraform)
+3. Event-driven ingest pipeline using infrastructure as code (terraform)
 
 ## Prerequisites
 

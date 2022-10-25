@@ -21,12 +21,35 @@ During the implementation of the prototype it has been found that the received t
 * [git](https://git-scm.com/)
 * [jq](https://stedolan.github.io/jq/download/)
     * Special note for Win: it is recommended to follow the advice to use Chocolatey
-* [SqlServer.exe](https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage-download?view=sql-server-ver16)
+* [SqlPackage](https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage-download?view=sql-server-ver16)
     * Special note for Win: add `C:\Program Files\Microsoft SQL Server\160\DAC\bin` to user Environment Variable `Path`
 * For Windows: enable [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 * an Azure Resource Group
     * **Tech Evolution:** a trainer must create the group beforehand and share the name of it with the trainees
     * **Self-paced:** create the group from Azure portal and use its name for the lab. You must be assigned to a subscription (Forefront's or your own) to do that
+
+### Macos
+
+1. Install homebrew
+    ```sh
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+1. Install brew dependencies
+    ```sh
+    brew install visual-studio-code  azure-cli git jq
+    ```
+
+1. Install SqlPackage
+
+    ```sh
+    mkdir -p sqlpackage
+    curl -SsLo sqlpackage-osx.zip  https://go.microsoft.com/fwlink/?linkid=2209610
+    unzip sqlpackage-osx.zip -d sqlpackage
+    chmod +x sqlpackage/sqlpackage
+    export PATH="$PATH:${PWD}/sqlpackage"
+    sqlpackage
+    ```
 
 ## Directory structure
 * [`modules/`](./modules) - Bicep modules used in this lab to deploy necessary resources in Azure

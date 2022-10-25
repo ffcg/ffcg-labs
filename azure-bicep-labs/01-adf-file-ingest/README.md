@@ -23,7 +23,6 @@ During the implementation of the prototype it has been found that the received t
     * Special note for Win: it is recommended to follow the advice to use Chocolatey
 * [SqlPackage](https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage-download?view=sql-server-ver16)
     * Special note for Win: add `C:\Program Files\Microsoft SQL Server\160\DAC\bin` to user Environment Variable `Path`
-* For Windows: enable [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 * an Azure Resource Group
     * **Tech Evolution:** a trainer must create the group beforehand and share the name of it with the trainees
     * **Self-paced:** create the group from Azure portal and use its name for the lab. You must be assigned to a subscription (Forefront's or your own) to do that

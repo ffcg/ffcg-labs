@@ -42,20 +42,18 @@ During the implementation of the prototype it has been found that the received t
 
 1. install [SqlPackage](https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage-download?view=sql-server-ver16)
 
-```cmd
-curl -SsLo SqlPackage.msi https://go.microsoft.com/fwlink/?linkid=2209512
-SqlPackage.msi /qr
-powershell -Command "[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + ';C:\Program Files\Microsoft SQL Server\160\DAC\bin', 'User')"
-
-```
+    ```cmd
+    curl -SsLo SqlPackage.msi https://go.microsoft.com/fwlink/?linkid=2209512
+    SqlPackage.msi /qr
+    powershell -Command "[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + ';C:\Program Files\Microsoft SQL Server\160\DAC\bin', 'User')"
+    ```
 
 1. Install [jq](https://stedolan.github.io/jq/download/)
 
-
-```cmd
-curl -SsLo jq.exe https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe
-move jq.exe "C:\Program Files\Git\cmd"
-```
+    ```cmd
+    curl -SsLo jq.exe https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe
+    move jq.exe "C:\Program Files\Git\cmd"
+    ```
 
 1. Open a new visual studio code and start a git bash terminal
 

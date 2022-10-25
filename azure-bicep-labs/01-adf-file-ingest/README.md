@@ -28,6 +28,37 @@ During the implementation of the prototype it has been found that the received t
     * **Tech Evolution:** a trainer must create the group beforehand and share the name of it with the trainees
     * **Self-paced:** create the group from Azure portal and use its name for the lab. You must be assigned to a subscription (Forefront's or your own) to do that
 
+### Windows
+
+1. Start a cmd terminal as administrator
+
+1. Install the prerequisites using winget by executing the following commands
+
+    ```cmd
+    winget install -e --id Microsoft.VisualStudioCode
+    winget install -e --id Microsoft.AzureCLI
+    winget install --id Git.Git -e --source winget
+    ```
+
+1. install [SqlPackage](https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage-download?view=sql-server-ver16)
+
+```cmd
+curl -SsLo SqlPackage.msi https://go.microsoft.com/fwlink/?linkid=2209512
+SqlPackage.msi /qr
+powershell -Command "[Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + ';C:\Program Files\Microsoft SQL Server\160\DAC\bin', 'User')"
+
+```
+
+1. Install [jq](https://stedolan.github.io/jq/download/)
+
+
+```cmd
+curl -SsLo jq.exe https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe
+move jq.exe "C:\Program Files\Git\cmd"
+```
+
+1. Open a new visual studio code and start a git bash terminal
+
 ### Macos
 
 1. Install homebrew

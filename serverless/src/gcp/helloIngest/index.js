@@ -33,6 +33,7 @@ exports.helloIngest = async pubsubMessage => {
     const metadata = {
       sourceFormat: 'CSV',
       skipLeadingRows: 1,
+      allowQuotedNewlines: true,
       autodetect: true,
       location: 'EU',
       // Truncate duplicates, see https://googleapis.dev/python/bigquery/latest/generated/google.cloud.bigquery.job.WriteDisposition.html

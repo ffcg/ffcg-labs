@@ -7,14 +7,14 @@ REGION_NAME="Norway East" # Sweden Central does not have Data Factory yet
 RESOURCE_GROUP_NAME="ffla-tech-evo-oct-2022"
 
 # Replace with your initials
-PREFIX="vga"
+PREFIX="YOUR_PREFIX_HERE"
 
 DB_USERNAME="db_admin"
 DB_PASSWORD="pAssw0rd123" # Don't hardcode passwords in real-life projects :)
 
 # Replace with your external IP address
 # The address is needed to publish db projects to sql db
-LOCAL_IP_ADDRESS="188.150.247.177"
+LOCAL_IP_ADDRESS="YOUR_IP_ADDRESS_HERE"
 
 ##############
 az login

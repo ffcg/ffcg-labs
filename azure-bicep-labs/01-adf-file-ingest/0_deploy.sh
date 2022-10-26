@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -x
 SUBSCRIPTION_NAME="Forefront Labs"
 REGION_NAME="Norway East" # Sweden Central does not have Data Factory yet
 
@@ -8,7 +7,7 @@ REGION_NAME="Norway East" # Sweden Central does not have Data Factory yet
 RESOURCE_GROUP_NAME="ffla-tech-evo-oct-2022"
 
 # Replace with your initials
-PREFIX="jec"
+PREFIX="<your lowercase prefix>"
 
 DB_USERNAME="db_admin"
 DB_PASSWORD="pAssw0rd123" # Don't hardcode passwords in real-life projects :)

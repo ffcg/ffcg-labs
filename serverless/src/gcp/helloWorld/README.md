@@ -109,7 +109,7 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
 1. Create the storage bucket for the public website:
 
     ```sh
-    gsutil mb -b on -l EU gs://<your prefix>-serverless-labs-32880-static-site
+    gsutil mb -b on -l EU gs://<your prefix>-serverless-labs-328806-static-site
     ```
 
 1. And copy the files:

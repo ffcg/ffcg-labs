@@ -115,7 +115,7 @@ Or the command line tools, see <https://cloud.google.com/functions/docs/deployin
 1. And copy the files:
 
     ```sh
-    gsutil cp public/* <your prefix>-serverless-labs-328806-static-site
+    gsutil cp public/* gs://<your prefix>-serverless-labs-328806-static-site
     ```
 
     ```output
